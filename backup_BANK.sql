@@ -1,0 +1,109 @@
+-- MySQL dump 10.16  Distrib 10.3.10-MariaDB, for osx10.13 (x86_64)
+--
+-- Host: localhost    Database: BANK
+-- ------------------------------------------------------
+-- Server version	10.3.10-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `ACCOUNT`
+--
+
+DROP TABLE IF EXISTS `ACCOUNT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ACCOUNT` (
+  `Number` int(6) NOT NULL,
+  `Password` int(6) NOT NULL,
+  `Money` int(11) DEFAULT NULL,
+  `OwnerSsn` int(6) NOT NULL,
+  PRIMARY KEY (`Number`),
+  KEY `OwnerSsn` (`OwnerSsn`),
+  CONSTRAINT `account_ibfk_1` FOREIGN KEY (`OwnerSsn`) REFERENCES `CUSTOMER` (`Ssn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ACCOUNT`
+--
+
+LOCK TABLES `ACCOUNT` WRITE;
+/*!40000 ALTER TABLE `ACCOUNT` DISABLE KEYS */;
+INSERT INTO `ACCOUNT` VALUES (123456,456789,2500000,940203),(124578,123456,5000000,970515),(345678,970329,0,970329),(876543,135790,2000000,930112);
+/*!40000 ALTER TABLE `ACCOUNT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CUSTOMER`
+--
+
+DROP TABLE IF EXISTS `CUSTOMER`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CUSTOMER` (
+  `Ssn` int(6) NOT NULL,
+  `Name` varchar(10) NOT NULL,
+  `Contact` int(8) DEFAULT NULL,
+  `Password` int(6) NOT NULL,
+  PRIMARY KEY (`Ssn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CUSTOMER`
+--
+
+LOCK TABLES `CUSTOMER` WRITE;
+/*!40000 ALTER TABLE `CUSTOMER` DISABLE KEYS */;
+INSERT INTO `CUSTOMER` VALUES (630815,'ohsup',76787667,123456),(690119,'Eunju',46077667,987654),(930112,'Wandeuk',98765432,135790),(940203,'Eomji',24057667,456789),(970329,'Hyunji',54047667,970329),(970515,'Yerin',50567464,123456);
+/*!40000 ALTER TABLE `CUSTOMER` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MANAGER`
+--
+
+DROP TABLE IF EXISTS `MANAGER`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `MANAGER` (
+  `Ssn` int(6) NOT NULL,
+  `Name` varchar(10) NOT NULL,
+  `Contact` int(8) DEFAULT NULL,
+  `Salary` int(11) DEFAULT NULL,
+  `WorkTime` int(11) DEFAULT NULL,
+  `Password` int(6) NOT NULL,
+  PRIMARY KEY (`Ssn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MANAGER`
+--
+
+LOCK TABLES `MANAGER` WRITE;
+/*!40000 ALTER TABLE `MANAGER` DISABLE KEYS */;
+INSERT INTO `MANAGER` VALUES (920406,'Jaehwan',1234567,5000000,40,920406),(970329,'Hyunji',54047667,4000000,35,970329),(970802,'Yunhee',56437122,3000000,30,970802);
+/*!40000 ALTER TABLE `MANAGER` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-12-09 14:56:56
